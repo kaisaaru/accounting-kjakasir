@@ -118,14 +118,14 @@ class FakturBeliRepository
 
                 $subBukuBesar->update([
                     'debet' => $subBukuBesar->debet + $debit,
-                    'kredit' => $subBukuBesar->kredit - $kredit
+                    'kredit' => $subBukuBesar->kredit + $kredit
                 ]);
 
                 foreach ($subBukuBesar->bukubesars as $bukuBesar) {
 
                     $bukuBesar->update([
                         'debet' => $bukuBesar->debet + $debit,
-                        'kredit' => $bukuBesar->kredit - $kredit,
+                        'kredit' => $bukuBesar->kredit + $kredit,
                     ]);
                 }
 
@@ -144,7 +144,7 @@ class FakturBeliRepository
                             $debet_bukubesar = $BukuBesar->debet;
                             $saldo_terakhir_entry = RiwayatBukuBesar::where('no_subbukubesar', $no_subbukubesar)
                                 ->orderBy('id', 'desc')
-                                ->firstOrNew();
+                                ->first();
 
                             $saldo_terakhir = $saldo_terakhir_entry ? $saldo_terakhir_entry->saldo_kumulatif : 0;
 
@@ -233,7 +233,7 @@ class FakturBeliRepository
                 $labakotor = $totalpenjualan - $totalphp;
 
                 $biayalain = BukuBesar::where('tipe', 'Biaya Lain')->first();
-                $biaya_lain = $biayalain->jumlah;
+                $biaya_lain = $biayalain ? $biayalain->jumlah : 0;
                 $lababersih = $labakotor - $biaya_lain;
 
                 $ketekuitas = "Laba Periode Berjalan";

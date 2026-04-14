@@ -222,7 +222,7 @@ class LaporanRepository
             $faktur = faktur_beli::all();
             return view('laporan.pembelian.pembelian', compact('faktur'));
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
     }
 
@@ -233,7 +233,7 @@ class LaporanRepository
             $perusahaan = Perusahaan::where('jenis', 'Supplier')->get();
             return view('laporan.pembelian.print', compact('faktur', 'perusahaan'));
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
     }
 
@@ -243,7 +243,7 @@ class LaporanRepository
             $faktur = faktur_jual::all();
             return view('laporan.penjualan.penjualan', compact('faktur'));
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
     }
 
@@ -254,7 +254,7 @@ class LaporanRepository
             $perusahaan = Perusahaan::where('jenis', 'Konsumen')->get();
             return view('laporan.penjualan.print', compact('faktur', 'perusahaan'));
         } catch (\Throwable $th) {
-            //throw $th;
+            return redirect()->back()->with('error', 'Terjadi kesalahan: ' . $th->getMessage());
         }
     }
 }

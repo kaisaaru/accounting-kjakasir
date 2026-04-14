@@ -54,7 +54,7 @@ class PurchaseOrderRepository
             } else {
                 return array(
                     'status' => 'error',
-                    'message' => 'Internal server rusak ' + $status
+                    'message' => 'Internal server rusak ' . $status
                 );
             }
         } catch (Exception $e) {
@@ -139,7 +139,7 @@ class PurchaseOrderRepository
 
             $kategori = $data->kategori_barang;
 
-            return redirect('/kategori')->with('update', 'Kategori Barang <strong>' . $kategori . '</strong> berhasil diupdate.');
+            return redirect('/dataPO')->with('update', 'Data PO berhasil diupdate.');
             //
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);

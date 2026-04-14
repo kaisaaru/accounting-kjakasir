@@ -158,24 +158,9 @@ class PenerimaanBarangController extends Controller
         //
     }
 
-    public function status(Request $request, $id)
+    public function status($status, $id)
     {
-        // // Ambil semua entri stok berdasarkan id_pb
-        // $listStok = detail_pb::where('id_pb', $id)->get();
-
-        // // Loop melalui setiap entri stok
-        // foreach ($listStok as $stok) {
-        //     // Tambahkan stok ke setiap barang
-        //     $barang = Barang::where('barang_id', $stok->barang_id)->first();
-
-        //     if ($barang) {
-        //         $barang->stok += $stok->stok;
-        //         $barang->save();
-        //     }
-        // }
         try {
-            $status = $request->get('status');
-            $id = $request->get('id');
             return $this->penerimaaanbarangRepository->status($status, $id);
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);

@@ -125,7 +125,7 @@ class PenerimaanBarangRepository
                 }
             }
 
-            return view('barang.barangmasuk.pb.print', compact('pb', 'perusahaan', 'details', 'detaillagi', 'detail', 'po', 'supplier', 'alamatsupplier', 'perusahaan', 'perusahaankita'));
+            return view('barang.barangmasuk.pb.print', compact('pb', 'perusahaan', 'details', 'detaillagi', 'detail', 'po', 'supplier', 'alamatsupplier', 'perusahaankita'));
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
         }
@@ -172,7 +172,7 @@ class PenerimaanBarangRepository
             if ($purchaseOrders->isEmpty()) {
                 return redirect('/dataPB')->with('error', 'Data purchase order tidak ditemukan');
             } else {
-                return view('barang.barangmasuk.pb.penerimaanbarang', compact('purchaseOrders', 'detailTotal', 'detailBarang', 'detail', 'perusahaan', 'PenerimaanBarangId', 'tanggalHariIni', 'barang', 'PerusahaanOptions', 'perusahaan'));
+                return view('barang.barangmasuk.pb.penerimaanbarang', compact('purchaseOrders', 'detailTotal', 'detailBarang', 'detail', 'perusahaan', 'PenerimaanBarangId', 'tanggalHariIni', 'barang', 'PerusahaanOptions'));
             }
         } catch (Exception $e) {
             return response()->json(['error' => $e->getMessage()], 400);
@@ -259,7 +259,7 @@ class PenerimaanBarangRepository
 
                                 $lastBalance = StokOpnemBarang::where('kode_barang', $detail_po->barang_id)
                                     ->orderBy('id', 'desc')
-                                    ->firstOrNew();
+                                    ->first();
                                 $saldoTerakhir = ($lastBalance) ? $lastBalance->stok : 0;
 
                                 // Update Barang table
@@ -295,10 +295,10 @@ class PenerimaanBarangRepository
                                     'harga' => $item['harga'], // Replace with the actual value for 'harga'
                                 ]);
                             } else {
-                                dd($detail_po);
+                                return redirect()->back()->with('error', 'Detail PO tidak ditemukan.');
                             }
                         } else {
-                            dd($selectedItem);
+                            return redirect()->back()->with('error', 'Format data tidak valid.');
                         }
                     }
                 } else {
@@ -317,10 +317,10 @@ class PenerimaanBarangRepository
                                 'potongan' => $selectedItem['potongan'],
                             ]);
                         } else {
-                            dd($detail_po);
+                            return redirect()->back()->with('error', 'Detail PO tidak ditemukan.');
                         }
                     } else {
-                        dd($selectedItem);
+                        return redirect()->back()->with('error', 'Format data tidak valid.');
                     }
                 }
             }
@@ -416,10 +416,10 @@ class PenerimaanBarangRepository
                                     'harga' => $item['harga'], // Replace with the actual value for 'harga'
                                 ]);
                             } else {
-                                dd($detail_po);
+                                return redirect()->back()->with('error', 'Detail PO tidak ditemukan.');
                             }
                         } else {
-                            dd($selectedItem);
+                            return redirect()->back()->with('error', 'Format data tidak valid.');
                         }
                     }
                 } else {
@@ -438,10 +438,10 @@ class PenerimaanBarangRepository
                                 'potongan' => $selectedItem['potongan'],
                             ]);
                         } else {
-                            dd($detail_po);
+                            return redirect()->back()->with('error', 'Detail PO tidak ditemukan.');
                         }
                     } else {
-                        dd($selectedItem);
+                        return redirect()->back()->with('error', 'Format data tidak valid.');
                     }
                 }
             }

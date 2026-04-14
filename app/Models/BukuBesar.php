@@ -10,7 +10,7 @@ class BukuBesar extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['debet', 'kredit', 'tipe', 'ket'];
+    protected $fillable = ['debet', 'kredit', 'jumlah', 'tipe', 'ket'];
     public function subBukuBesar()
     {
         return $this->hasMany(SubBukuBesar::class, 'no_bukubesar', 'no_bukubesar');

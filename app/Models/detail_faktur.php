@@ -27,7 +27,7 @@ class detail_faktur extends Model
 
     public function subbukubesar()
     {
-        return $this->hasMany(SubBukuBesar::class, 'no_subbukubesar', 'no_bukubesar');
+        return $this->hasMany(SubBukuBesar::class, 'no_subbukubesar', 'no_subbukubesar');
         // return $this->belongsTo(TipeAkun::class, 'tipe');
     }
 }
