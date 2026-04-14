@@ -566,7 +566,6 @@
         @yield('dashboard')
         @yield('relasi')
         @yield('barang')
-        @yield('barang')
         @yield('panduan')
         @yield('barangmasuk')
         @yield('barangkeluar')

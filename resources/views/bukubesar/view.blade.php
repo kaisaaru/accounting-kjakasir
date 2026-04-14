@@ -204,15 +204,13 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <thead class="thead-light">
-                                                    <tr class="sub-buku-besar-row" data-row-id="{{ $row->no_bukubesar }}"
-                                                        style="display: none;">
-                                                        <th scope="col">#</th>
-                                                        <th scope="col">No. Sub Buku Besar</th>
-                                                        <th scope="col">Keterangan</th>
-                                                        <th scope="col">Aksi</th>
-                                                    </tr>
-                                                </thead>
+                                                <tr class="sub-buku-besar-row thead-light" data-row-id="{{ $row->no_bukubesar }}"
+                                                    style="display: none;">
+                                                    <th scope="col">#</th>
+                                                    <th scope="col">No. Sub Buku Besar</th>
+                                                    <th scope="col">Keterangan</th>
+                                                    <th scope="col">Aksi</th>
+                                                </tr>
                                                 @foreach ($row->subBukuBesar as $item)
                                                     <tr class="sub-buku-besar-row" data-row-id="{{ $row->no_bukubesar }}"
                                                         style="display: none;">
